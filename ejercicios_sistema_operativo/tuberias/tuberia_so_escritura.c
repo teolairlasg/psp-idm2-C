@@ -9,16 +9,23 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char const *argv[])
 {
 
 	int tub;
 
-	tub=open("./TUBERIA",0);
+	tub=open("./TUBERIA",O_WRONLY);
+	char mensaje[20];
 
-	/* falta acabar */
+	strcpy(mensaje, "Hola mundo!!");
 
+	write(tub,mensaje,strlen(mensaje)*sizeof(char));
+
+	close(tub);
 	return 0;
 }
